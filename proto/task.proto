@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package task_queue;
+
+import "google/protobuf/struct.proto";
+
+option go_package = "./pb";
+
+service Task {
+    // CreateTask - add a task to the queue
+    rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
+
+    // GetTask - get a job from the queue
+    rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
+
+    // UpdateTask - acknowledge a task
+    rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
+
+    // DeleteTask - delete a task from the queue
+    rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse);
+}
+
+
+message CreateTaskRequest {
+    string task_name = 1;
+    google.protobuf.Struct input_data = 2;
+    int32 priority = 3;
+}
+message CreateTaskResponse {
+    string task_id = 1;
+    string task_name = 2;
+    string status = 3;
+}
+
+
+message GetTaskRequest {
+    string task_id = 1;
+}
+message GetTaskResponse {
+    string task_id = 1;
+    string task_name = 2;
+    google.protobuf.Struct input_data = 3;
+    int32 priority = 4;
+    string status = 5;
+}
+
+
+message UpdateTaskRequest {
+    string task_id = 1;
+    string status = 2;
+}
+message UpdateTaskResponse {
+    string task_id = 1;
+    string task_name = 2;
+    string status = 3;
+}
+
+
+message DeleteTaskRequest {
+    string task_id = 1;
+}
+message DeleteTaskResponse {
+    string task_id = 1;
+    string task_name = 2;
+    string status = 3;
+}

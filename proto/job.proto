@@ -4,16 +4,18 @@ package job_state;
 
 option go_package = "./pb";
 
-service JobState {
+service Job {
     // GetJobStatus - get the status of a job
     rpc GetJobStatus(JobStatusRequest) returns (JobStatusResponse);
 }
 
+
 message JobStatusRequest {
     string job_id = 1;
 }
-
 message JobStatusResponse {
     string name = 1;
     string status = 2;
+    int32 completed_tasks = 3;
+    int32 total_tasks = 4;
 }
