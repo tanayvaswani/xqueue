@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package job_state;
+
+option go_package = "./pb";
+
+service JobState {
+    // GetJobStatus - get the status of a job
+    // rpc GetJobStatus(JobStatusRequest) returns (JobStatusResponse);
+}
+
