@@ -14,5 +14,9 @@ func (s *Server) CreateTask(
 	ctx context.Context,
 	in *pb.CreateTaskRequest,
 ) (*pb.CreateTaskResponse, error) {
-	return &pb.CreateTaskResponse{TaskId: "1"}, nil
+	return &pb.CreateTaskResponse{
+		TaskId:   "1",
+		TaskName: in.TaskName,
+		Status:   "pending",
+	}, nil
 }
