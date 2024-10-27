@@ -20,3 +20,14 @@ func (s *Server) CreateTask(
 		Status:   "pending",
 	}, nil
 }
+
+func (s *Server) GetTask(
+	ctx context.Context,
+	in *pb.GetTaskRequest,
+) (*pb.GetTaskResponse, error) {
+	return &pb.GetTaskResponse{
+		TaskId:   in.TaskId,
+		TaskName: "task1",
+		Status:   "pending",
+	}, nil
+}
